@@ -1,0 +1,37 @@
+{
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
+    "prettier-plugin-jsdoc": "^0.3.36",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  },
+  "name": "url-templater",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
+    "tsc": "tsc --noEmit",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "string.prototype.replaceall": "^1.0.6"
+  },
+  "author": {
+    "email": "szymonb21@gmail.com",
+    "name": "Szymon Bretner (ncpa0cpl)"
+  },
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/ncpa0cpl/url-templater"
+  },
+  "description": "A template mechanism for parametrized url links, provide the url template and get a generator that will inject the parameters for you."
+}

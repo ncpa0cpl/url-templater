@@ -4,7 +4,7 @@ export const removeDuplicateSlashes = (s: string) => {
   const filtered = parts.reduce((result: string[], part, index) => {
     const prev = parts[index - 1] ?? "";
 
-    if (part === "" && !prev.endsWith(":")) {
+    if (part === "" && index !== 0 && !prev.endsWith(":")) {
       return result;
     }
 

@@ -3,6 +3,12 @@ import { urlTemplate } from "../src";
 describe("urlTemplate", () => {
   describe("with positive scenarios", () => {
     describe("with an full url", () => {
+      it("should correctly handle url without params", () => {
+        const template = urlTemplate("http://swapi.dev/api/people");
+
+        expect(template.generate({})).toEqual("http://swapi.dev/api/people");
+      });
+
       it("should correctly inject single parameter", () => {
         const template = urlTemplate("http://swapi.dev/api/people/{id}");
 

@@ -75,6 +75,12 @@ type GetParamsFromString<
     >
   : AllParams;
 
-export type UrlLiteralParams<U extends string> = {
+export type RewrapElems<U extends string> = {
   [I in keyof GetParamsFromString<U>]: RewrapShallow<GetParamsFromString<U>[I]>;
-}[number];
+};
+
+export type UrlLiteralParams<U extends string> = RewrapElems<U> extends {
+  length: 0;
+}
+  ? Record<never, string>
+  : RewrapElems<U>[number];

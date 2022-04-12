@@ -1,4 +1,4 @@
-# url-templater
+# url-templater.ts
 
 A template mechanism for parametrized url links, provide the url template and get a generator that will inject the parameters for you.
 

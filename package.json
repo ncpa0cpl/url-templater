@@ -14,7 +14,7 @@
     "typescript": "^4.6.3"
   },
   "name": "url-templater.ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",

@@ -2,6 +2,7 @@ __mocks__
 __tests__
 .husky
 .vscode
+coverage
 src
 .eslintignore
 .eslintrc.json

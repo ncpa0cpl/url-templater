@@ -33,5 +33,14 @@
   "repository": {
     "url": "https://github.com/ncpa0cpl/url-templater"
   },
-  "description": "A template mechanism for parametrized url links, provide the url template and get a generator that will inject the parameters for you."
+  "description": "A template mechanism for parametrized url links, provide the url template and get a generator that will inject the parameters for you.",
+  "keywords": [
+    "uri",
+    "url",
+    "template",
+    "pattern",
+    "param",
+    "parameter",
+    "parameterized"
+  ]
 }

@@ -15,7 +15,7 @@ Url returned by the generator is always a string, meaning the arguments must als
 Url Template function takes a string with a parametrized url, anything within the string that is inside curly braces is considered a parameter. Each parameter within the string will be an argument to the template generator.
 
 ```ts
-import { urlTemplate } from "url-templater";
+import { urlTemplate } from "url-templater.ts";
 
 const apiTemplate = urlTemplate("/api/product/{id}");
 
@@ -26,7 +26,7 @@ const generatedUrl = apiTemplate.generate({ id: 1 });
 There is no limit to how many parameters you can have.
 
 ```ts
-import { urlTemplate } from "url-templater";
+import { urlTemplate } from "url-templater.ts";
 
 const apiTemplate = urlTemplate("/api/{a}/{b}/{c}/{d}");
 
@@ -42,7 +42,7 @@ const generatedUrl = apiTemplate.generate({
 Parameters can also be optional, for that add a question sign `?` at the beginning of the parameter name.
 
 ```ts
-import { urlTemplate } from "url-templater";
+import { urlTemplate } from "url-templater.ts";
 
 const apiTemplate = urlTemplate("/api/product/{?id}");
 
@@ -56,7 +56,7 @@ const generatedUrlWithoutId = apiTemplate.generate({});
 Parameters can also be optionally chained, an optionally chained argument, if it is specified, will require each preceding optional argument to be defined.
 
 ```ts
-import { urlTemplate } from "url-templater";
+import { urlTemplate } from "url-templater.ts";
 
 const apiTemplate = urlTemplate("/api/book/{?id}/{+?pageNumber}"); // Here if the pageNumber is specified, the book ID also must be provided
 

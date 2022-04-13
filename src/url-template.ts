@@ -4,6 +4,7 @@ import type {
   ParameterSlot,
   StringParsable,
   UrlLiteralParams,
+  UrlTemplate,
 } from "./url-template.types";
 
 replaceAll.shim();
@@ -13,7 +14,7 @@ const paramMatchStripRegex = /(^{\?)|(^{\+\?)|(^{)|(}$)/g;
 const isParamOptionalRegex = /^({\?)|({\+\?)/;
 const isParamChainedRegex = /^{\+\?/;
 
-export const urlTemplate = <U extends string>(url: U) => {
+export const urlTemplate = <U extends string>(url: U): UrlTemplate<U> => {
   const slots: ParameterSlot[] = [];
 
   const matches = url.match(urlParamRegex);
@@ -62,5 +63,22 @@ export const urlTemplate = <U extends string>(url: U) => {
     return removeDuplicateSlashes(result.replaceAll("{}", ""));
   };
 
-  return { generate };
+  return {
+    generate,
+    get template() {
+      return url;
+    },
+    get parametersCount() {
+      return slots.length;
+    },
+    get parameters() {
+      return slots
+        .map((s) => ({
+          name: s.name,
+          isOptional: s.isOptional,
+          isChained: s.isChained,
+        }))
+        .reverse();
+    },
+  };
 };

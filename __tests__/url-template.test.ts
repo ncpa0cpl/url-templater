@@ -3,6 +3,94 @@ import { urlTemplate } from "../src";
 describe("urlTemplate", () => {
   describe("with positive scenarios", () => {
     describe("with an full url", () => {
+      it("should correctly parse the template", () => {
+        const template1 = urlTemplate("http://swapi.dev/api/people");
+
+        expect(template1.template).toEqual("http://swapi.dev/api/people");
+        expect(template1.parametersCount).toEqual(0);
+        expect(template1.parameters).toEqual([]);
+
+        const template2 = urlTemplate("http://swapi.dev/api/people/{id}");
+
+        expect(template2.template).toEqual("http://swapi.dev/api/people/{id}");
+        expect(template2.parametersCount).toEqual(1);
+        expect(template2.parameters).toEqual([
+          {
+            name: "id",
+            isOptional: false,
+            isChained: false,
+          },
+        ]);
+
+        const template3 = urlTemplate(
+          "http://swapi.dev/api/people/{id}/{foo}/"
+        );
+
+        expect(template3.template).toEqual(
+          "http://swapi.dev/api/people/{id}/{foo}/"
+        );
+        expect(template3.parametersCount).toEqual(2);
+        expect(template3.parameters).toEqual([
+          {
+            name: "id",
+            isOptional: false,
+            isChained: false,
+          },
+          {
+            name: "foo",
+            isOptional: false,
+            isChained: false,
+          },
+        ]);
+
+        const template4 = urlTemplate(
+          "http://swapi.dev/api/people/{id}/{?foo}/"
+        );
+
+        expect(template4.template).toEqual(
+          "http://swapi.dev/api/people/{id}/{?foo}/"
+        );
+        expect(template4.parametersCount).toEqual(2);
+        expect(template4.parameters).toEqual([
+          {
+            name: "id",
+            isOptional: false,
+            isChained: false,
+          },
+          {
+            name: "foo",
+            isOptional: true,
+            isChained: false,
+          },
+        ]);
+
+        const template5 = urlTemplate(
+          "http://swapi.dev/api/people/{id}/{?foo}/{+?bar}"
+        );
+
+        expect(template5.template).toEqual(
+          "http://swapi.dev/api/people/{id}/{?foo}/{+?bar}"
+        );
+        expect(template5.parametersCount).toEqual(3);
+        expect(template5.parameters).toEqual([
+          {
+            name: "id",
+            isOptional: false,
+            isChained: false,
+          },
+          {
+            name: "foo",
+            isOptional: true,
+            isChained: false,
+          },
+          {
+            name: "bar",
+            isOptional: true,
+            isChained: true,
+          },
+        ]);
+      });
+
       it("should correctly handle url without params", () => {
         const template = urlTemplate("http://swapi.dev/api/people");
 

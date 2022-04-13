@@ -84,3 +84,14 @@ export type UrlLiteralParams<U extends string> = RewrapElems<U> extends {
 }
   ? Record<never, string>
   : RewrapElems<U>[number];
+
+export type UrlTemplate<U extends string> = {
+  generate(parameters: UrlLiteralParams<U>): string;
+  readonly template: U;
+  readonly parametersCount: number;
+  readonly parameters: {
+    name: string;
+    isOptional: boolean;
+    isChained: boolean;
+  }[];
+};
